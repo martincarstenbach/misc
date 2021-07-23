@@ -1,11 +1,20 @@
 /*
-    gen_awr_rpts:   
-    
+    Copyright 2021 Martin Bach
+
+    Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in 
+    compliance with the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software distributed under the License is 
+    distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+    See the License for the specific language governing permissions and limitations under the License.
+
+    File:           gen_awr_rpts.sql   
     Purpose:        a simple tool querying the Automatic Workload Repository and generates (hourly) reports
                     per instance and global (in case of Real Application Clusters). The code iterates over
                     all the snapshots recorded. If your snapshot interval is <> 60 minutes it'll create a
                     _lot_ of reports.
-    Author:         Martin Bach
     Requirements:   Should run on 10.2 and later, tested with 19.11.0 on Oracle Linux 8
                     Can be run from either the database host or a client (instant client should suffice). 
                     User executing it must have appropriate access to the database's dictionary
@@ -27,9 +36,6 @@
     Version history:
     
         210707      initial version
-
-    Copyright Martin Bach 2021, all rights reserved. More info at https://martincarstenbach.wordpress.com/
-    Licensed under the Apache License, Version 2.0. See LICENSE.txt for terms & conditions.
 */
 
 -- global variables
