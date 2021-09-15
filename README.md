@@ -32,6 +32,8 @@ The following table lists all the tools and their purpose
 | Tool    | Purpose |
 | ------- | ------- | 
 | gen_awr_rpts | Generate AWR reports for single instance/Real Application Clusters for a given timeframe |
+| get_prefs.sql | Print the optimizer stats-gathering preferences for a table |
+| sql_testcase.sql | Given a SQL ID and optionally a Plan Hash Value this script generates a SQL test case automatically |
 
 
 ## Contributing
