@@ -10,7 +10,7 @@
     distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
     See the License for the specific language governing permissions and limitations under the License.
 
-    File:           gen_awr_rpts.sql   
+    File:           gen_awr_rpts_snap.sql   
     Purpose:        a simple tool querying the Automatic Workload Repository and generates (hourly) reports
                     per instance and global (in case of Real Application Clusters). The code iterates over
                     all the snapshots recorded. If your snapshot interval is <> 60 minutes it'll create a
@@ -35,8 +35,7 @@
 
     Version history:
     
-        210707      initial version
-        210920      minor changes, better readability of the license warning, ability to specify hour
+        210920      initial version
 */
 
 -- global variables
@@ -47,7 +46,7 @@ DEFINE v_output_format = 'html'
 set verify off
 
 prompt 
-prompt This is a helper script to generate AWR reports between 2 dates
+prompt This is a helper script to generate AWR reports between 2 snapshots 
 prompt
 
 -- the script requires a license for Enterprise Edition + Diagnostics Pack
@@ -84,8 +83,8 @@ end;
 prompt
 prompt Enter data range to collect AWR reports from and to
 prompt 
-accept v_start_date prompt 'Collect AWR reports from this date [dd.mm.yyyy hh24:mi]: '
-accept v_end_date prompt 'Collect AWR reports until this date [dd.mm.yyyy hh24:mi]: '
+accept v_start_snap prompt 'Collect AWR reports beginning with snap_id: '
+accept v_end_snap prompt 'Final snap_id to include: '
 
 prompt 
 prompt About to create the helper script...
@@ -112,7 +111,7 @@ WITH awr_reports AS (
     FROM
         dba_hist_snapshot
     WHERE
-        end_interval_time BETWEEN TO_DATE('&v_start_date.', 'dd.mm.yyyy hh24:mi') AND (TO_DATE('&v_end_date.', 'dd.mm.yyyy hh24:mi') + 1)
+        snap_id BETWEEN &v_start_snap and &v_end_snap
         AND dbid = &v_dbid
     ORDER BY
         snap_id
@@ -145,7 +144,7 @@ SELECT
 FROM
     dba_hist_snapshot
 WHERE
-    end_interval_time BETWEEN TO_DATE('&v_start_date.', 'dd.mm.yyyy hh24:mi') AND (TO_DATE('&v_end_date.', 'dd.mm.yyyy hh24:mi') + 1)
+    snap_id BETWEEN &v_start_snap and &v_end_snap
     AND dbid = &v_dbid
 GROUP BY
     snap_id
