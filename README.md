@@ -31,6 +31,7 @@ The following table lists all the tools and their purpose
 
 | Tool    | Purpose |
 | ------- | ------- | 
+| flush_sql | selectively purge SQL ID from cursor cache  |
 | gen_awr_rpts_date | Generate AWR reports for single instance/Real Application Clusters for a given timeframe |
 | gen_awr_rpts_snap | Generate AWR reports for single instance/Real Application Clusters for a given snapshot range |
 | get_prefs.sql | Print the optimizer stats-gathering preferences for a table |
