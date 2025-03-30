@@ -9,7 +9,7 @@ The list of tools added is growing steadily while I port them from my private re
 ## Overview
 
 The tools added here usually deal with the Oracle database and surrounding ecosystem. As you know, the Oracle database
-is propriatory software with a well-defined licensing framework. Violating the software license is NOT advised, and 
+is proprietary software with a well-defined licensing framework. Violating the software license is NOT advised, and 
 you need to be very careful not to do so. 
 
 For the majority the tools listed here require the Oracle Database - Enterprise Edition. You may need extra licenses on
